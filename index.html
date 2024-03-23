@@ -6,7 +6,11 @@
   <title>Store Management System - Login</title>
   <link rel="stylesheet" href="main.css">
   <style>
-    /* Paste the CSS for the login form here */
+    /* Updated CSS for the login form */
+    body {
+      background-color: orange; /* Set the surrounding color to orange */
+    }
+
     .login-container {
       margin: 50px auto;
       width: 300px;
@@ -14,6 +18,7 @@
       padding: 20px;
       border-radius: 5px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      background-color: #fff; /* Set the login form background to white */
     }
 
     .login-container h2 {
@@ -42,6 +47,13 @@
     .login-container button:hover {
       background-color: #555;
     }
+
+    /* Style for show password checkbox */
+    .show-password-label {
+      display: block;
+      margin-top: 10px;
+    }
+
   </style>
 </head>
 <body>
@@ -50,6 +62,8 @@
     <form id="login-form">
       <input type="text" id="username" name="username" placeholder="Username" required>
       <input type="password" id="password" name="password" placeholder="Password" required>
+      <input type="checkbox" id="show-password-checkbox" class="show-password-checkbox">
+      <label for="show-password-checkbox" class="show-password-label">Show Password</label>
       <button type="submit">Login</button>
     </form>
   </div>
@@ -64,15 +78,26 @@
 
       // Here, you can check the username and password against your database or any other authentication method
       // For simplicity, let's assume the username is "admin" and the password is "password"
-      if (username === "frank" && password === "frank") {
+      if (username === "admin" && password === "password") {
         // Redirect to the main content page
         window.location.href = "main.html";
       } else {
         alert("Invalid username or password. Please try again.");
       }
     });
+
+    // JavaScript to toggle password visibility
+    document.getElementById("show-password-checkbox").addEventListener("change", function() {
+      var passwordInput = document.getElementById("password");
+      if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+      } else {
+        passwordInput.type = "password";
+      }
+    });
   </script>
 </body>
 </html>
+
 
 
