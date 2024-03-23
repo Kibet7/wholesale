@@ -1,9 +1,9 @@
-<!<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Store Management System</title>
+  <title>Store Management System - Login</title>
   <link rel="stylesheet" href="main.css">
   <style>
     /* Paste the CSS for the login form here */
@@ -45,33 +45,33 @@
   </style>
 </head>
 <body>
-  <header>
-    <h1>Store Management System</h1>
-    <nav>
-      <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="inventory.html">Inventory</a></li> <!-- Link to Inventory page -->
-        <li><a href="#">Customers</a></li>
-        <li><a href="#">Orders</a></li>
-        <li><a href="#">Reports</a></li>
-      </ul>
-    </nav>
-  </header>
-  
-  <main>
-    <!-- Your existing content -->
-    <section class="hero">
-      <h2>Welcome to the Store Management System</h2>
-      <p>Discover a world of efficiency and control with our comprehensive Store Management System. Streamline your operations, manage inventory effortlessly, and delight your customers with seamless experiences. Let us empower your business to thrive!</p>
-    </section>
+  <div class="login-container">
+    <h2>Login to Store Management System</h2>
+    <form id="login-form">
+      <input type="text" id="username" name="username" placeholder="Username" required>
+      <input type="password" id="password" name="password" placeholder="Password" required>
+      <button type="submit">Login</button>
+    </form>
+  </div>
 
-    
-  </main>
+  <script>
+    document.getElementById("login-form").addEventListener("submit", function(event) {
+      event.preventDefault(); // Prevent form submission
 
-  <footer>
-    <p>&copy; 2024 Store Management System</p>
-    &lt; &lt; &lt;&copy; <a href="about.html" target="_blank">Kibet Frank</a> &gt;&gt;&gt;
-    <a href="#">Back to Top</a>
-  </footer>
+      // Validate username and password (you can replace this with your validation logic)
+      var username = document.getElementById("username").value;
+      var password = document.getElementById("password").value;
+
+      // Here, you can check the username and password against your database or any other authentication method
+      // For simplicity, let's assume the username is "admin" and the password is "password"
+      if (username === "admin" && password === "password") {
+        // Redirect to the main content page
+        window.location.href = "main.html";
+      } else {
+        alert("Invalid username or password. Please try again.");
+      }
+    });
+  </script>
 </body>
 </html>
+
