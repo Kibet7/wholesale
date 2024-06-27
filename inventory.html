@@ -3,42 +3,67 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Samsung A23 Details</title>
+  <title>Store Management System</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header style="background-color: #333; color: #fff; padding: 20px;">
-    <h1>Samsung A23 Product Details</h1>
+  <header class="site-header">
+    <h1>Store Management System</h1>
     <nav>
-      <ul style="list-style: none; padding: 0;">
-        <li style="display: inline; margin-right: 20px;"><a href="#" style="color: #fff; text-decoration: none;">Home</a></li>
-        <li style="display: inline; margin-right: 20px;"><a href="#" style="color: #fff; text-decoration: none;">Products</a></li>
-        <li style="display: inline;"><a href="#" style="color: #fff; text-decoration: none;">Contact</a></li>
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Products</a></li>
+        <li><a href="#">Contact</a></li>
       </ul>
     </nav>
   </header>
 
-  <main>
-    <section class="product-details" style="text-align: center;">
-      <h2 style="font-size: 2em;">Samsung Galaxy A23</h2>
-      <div class="product-image">
-        <img src="img/samsung-a23.png" alt="Samsung A23" title="Samsung A23" style="max-width: 100%;">
-      </div>
-      <div class="product-description" style="margin-top: 20px;">
-        <p>The Samsung Galaxy A23 comes with a 6.6-inch display and Qualcomm Snapdragon 680 processor. Specs also include a 5000mAh battery with 15W charging speed, Quad camera setup on the back with a 50MP main sensor, and an 8MP front selfie camera.</p>
-        <p style="font-size: 1.2em;">Price: $299.99</p>
-        <button onclick="addToCart()" style="background-color: #f44336; border: none; color: #fff; cursor: pointer; padding: 12px 24px; text-align: center; text-decoration: none; font-size: 1.2em; margin-top: 10px; transition: background-color 0.3s ease;">Add to Cart</button>
-      </div>
-    </section>
+  <main id="product-list">
+    <!-- Products will be dynamically added here -->
   </main>
 
-  <footer style="background-color: #f2f2f2; text-align: center; padding: 20px;">
+  <footer class="site-footer">
     <p>&copy; 2024 Store Management System</p>
   </footer>
 
   <script>
-    // Function to add the product to the cart
+    // Sample product data (you can replace this with actual data)
+    const products = [
+      { name: "Samsung Galaxy A23", image: "img/samsung-a23.png", description: "The Samsung Galaxy A23 comes with a 6.6-inch display and Qualcomm Snapdragon 680 processor. Specs also include a 5000mAh battery with 15W charging speed, Quad camera setup on the back with a 50MP main sensor, and an 8MP front selfie camera.", price: "$299.99" },
+      { name: "Apple iPhone 13", image: "img/iphone-13.png", description: "The Apple iPhone 13 features a Super Retina XDR display, A15 Bionic chip, and Dual 12MP camera system with Night mode. It comes with iOS 15 and supports 5G connectivity.", price: "$799.99" },
+      // Add more products as needed
+    ];
+
+    // Function to generate product HTML
+    function generateProductHTML(product) {
+      return `
+        <section class="product-details">
+          <h2>${product.name}</h2>
+          <div class="product-image">
+            <img src="${product.image}" alt="${product.name}" title="${product.name}">
+          </div>
+          <div class="product-description">
+            <p>${product.description}</p>
+            <p class="price">Price: ${product.price}</p>
+            <button onclick="addToCart()">Add to Cart</button>
+          </div>
+        </section>
+      `;
+    }
+
+    // Function to add products to the DOM
+    function addProductsToDOM() {
+      const productList = document.getElementById("product-list");
+      products.forEach((product) => {
+        productList.innerHTML += generateProductHTML(product);
+      });
+    }
+
+    // Call function to add products when the page loads
+    window.onload = addProductsToDOM;
+
+    // Function to add the product to the cart (dummy function for now)
     function addToCart() {
-      // You can implement the functionality to add the product to the cart here
       alert('Product added to cart!');
     }
   </script>
