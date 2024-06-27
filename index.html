@@ -3,98 +3,132 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Store Management System - Login</title>
-  <link rel="stylesheet" href="main.css">
-  <style>
-    /* Updated CSS for the login form */
-    body {
-      background-color: orange; /* Set the surrounding color to orange */
-    }
-
-    .login-container {
-      margin: 50px auto;
-      width: 300px;
-      border: 1px solid #ccc;
-      padding: 20px;
-      border-radius: 5px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      background-color: #fff; /* Set the login form background to white */
-    }
-
-    .login-container h2 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .login-container input[type="text"],
-    .login-container input[type="password"],
-    .login-container button {
-      display: block;
-      width: 100%;
-      margin-bottom: 10px;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      box-sizing: border-box;
-    }
-
-    .login-container button {
-      background-color: #333;
-      color: #fff;
-      cursor: pointer;
-    }
-
-    .login-container button:hover {
-      background-color: #555;
-    }
-
-    /* Style for show password checkbox */
-    .show-password-label {
-      display: block;
-      margin-top: 10px;
-    }
-
-  </style>
+  <title>Store Management System</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="login-container">
-    <h2><i><b>Login Store</i></b></h2>
-    <form id="login-form">
-      <input type="text" id="username" name="username" placeholder="Username" required>
-      <input type="password" id="password" name="password" placeholder="Password" required>
-      <input type="checkbox" id="show-password-checkbox" class="show-password-checkbox">
-      <label for="show-password-checkbox" class="show-password-label">Show Password</label>
-      <button type="submit">Login</button>
-    </form>
-  </div>
+  <header class="site-header">
+    <h1>Store Management System</h1>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Products</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#" onclick="toggleCart()">Cart</a></li> <!-- Add Cart link -->
+      </ul>
+    </nav>
+  </header>
+
+  <main id="product-list">
+    <!-- Products will be dynamically added here -->
+  </main>
+
+  <!-- Shopping Cart Section -->
+  <aside id="shopping-cart" class="shopping-cart">
+    <h2>Shopping Cart</h2>
+    <ul id="cart-items">
+      <!-- Cart items will be dynamically added here -->
+    </ul>
+    <button onclick="checkout()">Checkout</button>
+    <button onclick="toggleCart()">Close Cart</button>
+  </aside>
+
+  <footer class="site-footer">
+    <p>&copy; 2024 Store Management System</p>
+  </footer>
 
   <script>
-    document.getElementById("login-form").addEventListener("submit", function(event) {
-      event.preventDefault(); // Prevent form submission
+    // Sample product data (you can replace this with actual data)
+    const products = [
+      { id: 1, name: "Samsung Galaxy A23", image: "img/samsung-a23.png", description: "The Samsung Galaxy A23 comes with a 6.6-inch display and Qualcomm Snapdragon 680 processor. Specs also include a 5000mAh battery with 15W charging speed, Quad camera setup on the back with a 50MP main sensor, and an 8MP front selfie camera.", price: 299.99 },
+      { id: 2, name: "Apple iPhone 13", image: "img/iphone-13.png", description: "The Apple iPhone 13 features a Super Retina XDR display, A15 Bionic chip, and Dual 12MP camera system with Night mode. It comes with iOS 15 and supports 5G connectivity.", price: 799.99 },
+      // Add more products as needed
+    ];
 
-      // Validate username and password (you can replace this with your validation logic)
-      var username = document.getElementById("username").value;
-      var password = document.getElementById("password").value;
+    // Generate random product data
+    function generateRandomProduct(id) {
+      const randomName = `Product ${id}`;
+      const randomImage = `img/product-${id}.png`;
+      const randomDescription = `This is a description for Product ${id}. Lorem ipsum dolor sit amet, consectetur adipiscing elit.`;
+      const randomPrice = Math.floor(Math.random() * 1000) + 50; // Random price between $50 and $1050
 
-      // Here, you can check the username and password against your database or any other authentication method
-      
-      if (username === "Frank" && password === "Frank") {
-        // Redirect to the main content page
-        window.location.href = "main.html";
-      } else {
-        alert("Invalid username or password. Please try again.");
+      return { id, name: randomName, image: randomImage, description: randomDescription, price: randomPrice };
+    }
+
+    // Function to generate random products
+    function generateRandomProducts(numProducts) {
+      const randomProducts = [];
+      for (let i = 3; i <= numProducts + 2; i++) {
+        randomProducts.push(generateRandomProduct(i));
       }
-    });
+      return randomProducts;
+    }
 
-    // JavaScript to toggle password visibility
-    document.getElementById("show-password-checkbox").addEventListener("change", function() {
-      var passwordInput = document.getElementById("password");
-      if (passwordInput.type === "password") {
-        passwordInput.type = "text";
-      } else {
-        passwordInput.type = "password";
-      }
-    });
+    // Add random products to the products array
+    const randomProducts = generateRandomProducts(30);
+    products.push(...randomProducts);
+
+    // Function to generate product HTML
+    function generateProductHTML(product) {
+      return `
+        <section class="product-details">
+          <h2>${product.name}</h2>
+          <div class="product-image">
+            <img src="${product.image}" alt="${product.name}" title="${product.name}">
+          </div>
+          <div class="product-description">
+            <p>${product.description}</p>
+            <p class="price">$${product.price.toFixed(2)}</p>
+            <button onclick="addToCart(${product.id})">Add to Cart</button>
+          </div>
+        </section>
+      `;
+    }
+
+    // Function to add products to the DOM
+    function addProductsToDOM() {
+      const productList = document.getElementById("product-list");
+      products.forEach((product) => {
+        productList.innerHTML += generateProductHTML(product);
+      });
+    }
+
+    // Call function to add products when the page loads
+    window.onload = addProductsToDOM;
+
+    // Function to add item to cart
+    let cartItems = [];
+    function addToCart(productId) {
+      const product = products.find(p => p.id === productId);
+      cartItems.push(product);
+      updateCartDisplay();
+    }
+
+    // Function to update cart display
+    function updateCartDisplay() {
+      const cartList = document.getElementById("cart-items");
+      cartList.innerHTML = "";
+      cartItems.forEach((item) => {
+        const li = document.createElement("li");
+        li.textContent = `${item.name} - $${item.price.toFixed(2)}`;
+        cartList.appendChild(li);
+      });
+    }
+
+    // Function to toggle cart visibility
+    function toggleCart() {
+      const cart = document.getElementById("shopping-cart");
+      cart.classList.toggle("show-cart");
+    }
+
+    // Function to simulate checkout
+    function checkout() {
+      alert("Checkout functionality would be implemented here.");
+      // You can add logic to process the cartItems array (e.g., send to server, clear cart, etc.)
+      cartItems = []; // Clear cart after checkout
+      updateCartDisplay(); // Update cart display
+      toggleCart(); // Close cart after checkout
+    }
   </script>
 </body>
 </html>
