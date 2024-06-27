@@ -2,59 +2,112 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-  }
-  
-  h1, h2, h3 {
+}
+
+h1, h2, h3 {
     margin-top: 0;
-  }
-  
-  ul {
+}
+
+ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
-  }
-  
-  /* Header section styles */
-  header {
+}
+
+/* Header section styles */
+header {
     background-color: #4285f4;
     color: #fff;
     padding: 20px;
-  }
-  
-  h1 {
+}
+
+h1 {
     font-size: 2.5em;
-  }
-  
-  /* Hero section styles */
-  .hero {
+}
+
+/* Hero section styles */
+.hero {
     background-color: #f2f2f2;
     padding: 80px 20px;
     text-align: center;
-  }
-  
-  h2 {
+}
+
+h2 {
     font-size: 2em;
-    font-weight: bold; margin-bottom: 20px; }
+    font-weight: bold;
+    margin-bottom: 20px;
+}
 
-    p { font-size: 1.2em; line-height: 1.5; margin-bottom: 40px; }
-    
-    /* Products section styles */ .products { display: flex; flex-wrap: wrap; justify-content: center; margin-top: 80px; }
-    
-    li { background-color: #fff; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); margin: 20px; max-width: 300px; padding: 20px; text-align: center; }
-    
-    h3 { font-size: 1.5em; font-weight: bold; margin-top: 0; }
-    
-    img { margin-bottom:20px; }
+p {
+    font-size: 1.2em;
+    line-height: 1.5;
+    margin-bottom: 40px;
+}
 
-    .price { color: #4285f4; font-size: 1.2em; margin-bottom: 10px; }
-    
-    button { background-color: #f44336; border: none; color: #fff; cursor: pointer; padding: 12px 24px; text-align: center; text-decoration: none; font-size: 1.2em; margin-top: 10px; transition: background-color 0.3s ease; }
-    
-    button:hover { background-color: #e53935; }
-    
-    /* Footer section styles */ footer { background-color: #f2f2f2; text-align: center; padding: 20px; margin-top: 80px; font-size: 0.8 em; }
+/* Products section styles */
+.products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 80px;
+}
 
-Copyright { font-size: 0.5em; }
+.products li {
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    max-width: 300px;
+    padding: 20px;
+    text-align: center;
+}
 
-Social-links { margin-right: 10px; Font-size: 1.5em; } 
+.products h3 {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-top: 0;
+}
 
+.products img {
+    margin-bottom: 20px;
+}
+
+.price {
+    color: #4285f4;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+button {
+    background-color: #f44336;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    padding: 12px 24px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.2em;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #e53935;
+}
+
+/* Footer section styles */
+footer {
+    background-color: #f2f2f2;
+    text-align: center;
+    padding: 20px;
+    margin-top: 80px;
+    font-size: 0.8em;
+}
+
+footer .copyright {
+    font-size: 0.5em;
+}
+
+footer .social-links {
+    margin-right: 10px;
+    font-size: 1.5em;
+}
