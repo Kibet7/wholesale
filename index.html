@@ -15,6 +15,7 @@
         <li><a href="#">Products</a></li>
         <li><a href="#">Contact</a></li>
         <li><a href="#" onclick="toggleCart()">Cart</a></li> <!-- Add Cart link -->
+        <li><a href="#" onclick="viewCart()">View Cart</a></li> <!-- Add View Cart link -->
       </ul>
     </nav>
   </header>
@@ -119,6 +120,11 @@
     function toggleCart() {
       const cart = document.getElementById("shopping-cart");
       cart.classList.toggle("show-cart");
+    }
+
+    // Function to view cart
+    function viewCart() {
+      toggleCart(); // Open the cart if it's closed
     }
 
     // Function to simulate checkout
